@@ -1,0 +1,105 @@
+﻿@{
+    ViewData["Title"] = "MyBooks";
+}
+
+<h2>MyBooks</h2>
+
+
+<div class="col-md-12">
+  <table id="tblMyBooks" class="table table-striped">
+    <thead>
+      <tr>
+        <th align="left" class="productth">Title</th>
+        <th align="left" class="productth">Author</th>
+        <th align="left" class="productth">Serial</th>
+        <th align="left" class="productth">Options</th>
+      </tr>
+    </thead>
+  </table>
+</div>
+
+
+@section Scripts
+  {
+  <script type="text/javascript">
+
+
+    function PopulateTable(tbl, books) {
+      var newBody = document.createElement("tbody");
+
+      $.each(books, function (i, item) {
+        var tr = document.createElement("tr");
+
+        var td = document.createElement("td");
+        td.appendChild(document.createTextNode(item.title));
+        tr.appendChild(td);
+
+        var td = document.createElement("td");
+        td.appendChild(document.createTextNode(item.author));
+        tr.appendChild(td);
+
+        var td = document.createElement("td");
+        td.appendChild(document.createTextNode(item.serial));
+        tr.appendChild(td);       
+
+
+        var td = document.createElement("td");
+        var button = document.createElement("button");
+        button.appendChild(document.createTextNode("return"));
+        button.setAttribute("onClick", "javascript:Return('" + item.serial + "')");
+        td.appendChild(button);
+        tr.appendChild(td);
+        newBody.appendChild(tr);
+      });
+
+      tbl.appendChild(newBody);
+
+    }
+
+    
+    function Return(serialInput) {
+      $.ajax({
+        type: 'POST',
+        url: '@Url.Action("ReturnBook", "Home")',
+        dataType: 'json',
+        data: { serial: serialInput },
+        success: function (data, status) {
+          location.reload();
+        },
+        error: function (ex) {
+          var r = jQuery.parseJSON(response.responseText);
+          alert("Message: " + r.Message);
+          alert("StackTrace: " + r.StackTrace);
+          alert("ExceptionType: " + r.ExceptionType);
+          location.reload();
+        }
+      });
+      return false;
+    }
+    
+    
+    $(function () {
+      LoadData();
+    });
+    
+    function LoadData() {
+      var tbl = document.getElementById("tblMyBooks");
+      $.ajax({
+        type: 'POST',
+        url: '@Url.Action("ListMyBooks", "Home")',
+        dataType: 'json',
+        success: function (data, status) {
+          //alert(JSON.stringify(data));
+          PopulateTable(tblMyBooks, data);
+        },
+        error: function (ex) {
+          var r = jQuery.parseJSON(response.responseText);
+          alert("Message: " + r.Message);
+          alert("StackTrace: " + r.StackTrace);
+          alert("ExceptionType: " + r.ExceptionType);
+        }
+        });
+      return false;
+    } 
+  </script>
+}

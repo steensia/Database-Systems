@@ -1,0 +1,64 @@
+﻿
+@{
+  ViewData["Title"] = "Login";
+}
+
+<div class="col-md-12">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">Login</h3>
+    </div>
+    <div class="panel-body">
+      <div class="form-group col-md-5">
+        <label>Name</label>
+        <input type="text" name="Name" id="Name" class="form-control" placeholder="Enter Name" required="" />
+      </div>
+      <div class="form-group col-md-5">
+        <label>Cardnum</label>
+        <input type="text" name="Cardnum" id="Cardnum" class="form-control" placeholder="Enter Cardnum" required="" />
+      </div>
+
+      <div class="form-group col-md-1">
+        <div style="float: right; display:inline-block;">
+          <input class="btn btn-primary" name="submitButton" id="btnLogin" value="Login" type="button">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+@section Scripts
+  {
+  <script type="text/javascript">
+
+      $(function () {
+        $("#btnLogin").click(function () {
+          var nameval = $("#Name").val();
+          var id = parseInt($("#Cardnum").val());
+
+          $.ajax({
+            type: "POST",
+            url: '@Url.Action("CheckLogin", "Home")',
+            data: {name : nameval, cardnum : id},
+            dataType: "json",
+            //contentType: "application/json; charset=utf-8",
+            success: function (data) {
+              if (!data.success) {
+                alert("Incorrect Name or Cardnum");
+              }
+              else {
+                window.location.href = "/Home/Index";
+
+              }
+            },
+            error: function () {
+              alert("Error while logging in");
+            }
+            });
+          return false;
+        });
+      });
+  </script>
+}
+

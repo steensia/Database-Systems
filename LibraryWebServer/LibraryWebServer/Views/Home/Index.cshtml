@@ -1,0 +1,154 @@
+﻿@{
+  ViewData["Title"] = "Home Page";
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+
+
+<div class="col-md-12">
+  <table id="tblBooks" class="table table-striped">
+    <thead>
+      <tr>
+        <th align="left" class="productth">ISBN</th>
+        <th align="left" class="productth">Title</th>
+        <th align="left" class="productth">Author</th>
+        <th align="left" class="productth">Serial</th>
+        <th align="left" class="productth">Holder</th>
+      </tr>
+    </thead>
+  </table>
+</div>
+
+<a href="/Home/MyBooks">Go to my books</a>
+<br />
+<br />
+
+<button onClick='LogOut()'>Logout</button>
+
+
+@section Scripts
+  {
+  <script type="text/javascript">
+
+
+
+    function PopulateTable(tbl, books) {
+      var newBody = document.createElement("tbody");
+      
+
+      $.each(books, function (i, item) {
+        var tr = document.createElement("tr");
+
+        var td = document.createElement("td");
+        td.appendChild(document.createTextNode(item.isbn));
+        tr.appendChild(td);
+        
+        var td = document.createElement("td");
+        td.appendChild(document.createTextNode(item.title));
+        tr.appendChild(td);
+
+        var td = document.createElement("td");
+        td.appendChild(document.createTextNode(item.author));
+        tr.appendChild(td);
+
+        var td = document.createElement("td");
+        if (item.serial) {
+          td.appendChild(document.createTextNode(item.serial));
+        }
+        else {
+          td.appendChild(document.createTextNode("no copies"));
+        }
+        tr.appendChild(td);
+
+        
+        var td = document.createElement("td");
+        if (item.serial && item.name == "") {
+          var button = document.createElement("button");
+          button.appendChild(document.createTextNode("checkout"));
+          button.setAttribute("onClick", "javascript:CheckOut('" + item.serial + "')");
+          td.appendChild(button);          
+        }
+        else {
+          td.appendChild(document.createTextNode(item.name));
+        }
+
+        tr.appendChild(td);
+        
+
+        newBody.appendChild(tr);
+      });
+
+      tbl.appendChild(newBody);
+
+    }
+
+
+    function LogOut() {
+
+      $.ajax({
+        type: 'POST',
+        url: '@Url.Action("LogOut", "Home")',
+        dataType: 'json',
+        success: function () {
+          location.reload();
+        },
+        error: function (ex) {
+          var r = jQuery.parseJSON(response.responseText);
+          alert("Message: " + r.Message);
+          alert("StackTrace: " + r.StackTrace);
+          alert("ExceptionType: " + r.ExceptionType);
+          location.reload();
+        }
+      });
+      return false;
+    }
+    
+    function CheckOut(serialInput) {
+      $.ajax({
+        type: 'POST',
+        url: '@Url.Action("CheckOutBook", "Home")',
+        dataType: 'json',
+        data: { serial: serialInput },
+        success: function (data, status) {
+          location.reload();
+        },
+        error: function (ex) {
+          var r = jQuery.parseJSON(response.responseText);
+          alert("Message: " + r.Message);
+          alert("StackTrace: " + r.StackTrace);
+          alert("ExceptionType: " + r.ExceptionType);
+          location.reload();
+        }
+      });
+      return false;
+    }
+    
+    
+    $(function () {
+      LoadData();
+    });
+    
+    function LoadData() {
+      var tbl = document.getElementById("tblBooks");
+      
+      $.ajax({
+        type: 'POST',
+        url: '@Url.Action("AllTitles", "Home")',
+        dataType: 'json',
+        success: function (data, status) {
+          //alert(JSON.stringify(data));
+          PopulateTable(tbl, data);
+        },
+        error: function (ex) {
+          var r = jQuery.parseJSON(response.responseText);
+          alert("Message: " + r.Message);
+          alert("StackTrace: " + r.StackTrace);
+          alert("ExceptionType: " + r.ExceptionType);
+        }
+        });
+      return false;
+    } 
+  </script>
+}

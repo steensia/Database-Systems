@@ -1,0 +1,14 @@
+C:\Users\steen\Desktop\UofU-2016-2020\Spring 2019\CS 5530\Homework\HW5\ChessBrowser\ChessBrowser\bin\Debug\ChessBrowser.exe.config
+C:\Users\steen\Desktop\UofU-2016-2020\Spring 2019\CS 5530\Homework\HW5\ChessBrowser\ChessBrowser\bin\Debug\ChessBrowser.exe
+C:\Users\steen\Desktop\UofU-2016-2020\Spring 2019\CS 5530\Homework\HW5\ChessBrowser\ChessBrowser\bin\Debug\ChessBrowser.pdb
+C:\Users\steen\Desktop\UofU-2016-2020\Spring 2019\CS 5530\Homework\HW5\ChessBrowser\ChessBrowser\bin\Debug\MySql.Data.dll
+C:\Users\steen\Desktop\UofU-2016-2020\Spring 2019\CS 5530\Homework\HW5\ChessBrowser\ChessBrowser\obj\Debug\ChessBrowser.csprojAssemblyReference.cache
+C:\Users\steen\Desktop\UofU-2016-2020\Spring 2019\CS 5530\Homework\HW5\ChessBrowser\ChessBrowser\obj\Debug\ChessBrowser.Form1.resources
+C:\Users\steen\Desktop\UofU-2016-2020\Spring 2019\CS 5530\Homework\HW5\ChessBrowser\ChessBrowser\obj\Debug\ChessBrowser.Properties.Resources.resources
+C:\Users\steen\Desktop\UofU-2016-2020\Spring 2019\CS 5530\Homework\HW5\ChessBrowser\ChessBrowser\obj\Debug\ChessBrowser.csproj.GenerateResource.cache
+C:\Users\steen\Desktop\UofU-2016-2020\Spring 2019\CS 5530\Homework\HW5\ChessBrowser\ChessBrowser\obj\Debug\ChessBrowser.csproj.CoreCompileInputs.cache
+C:\Users\steen\Desktop\UofU-2016-2020\Spring 2019\CS 5530\Homework\HW5\ChessBrowser\ChessBrowser\obj\Debug\ChessBrowser.csproj.CopyComplete
+C:\Users\steen\Desktop\UofU-2016-2020\Spring 2019\CS 5530\Homework\HW5\ChessBrowser\ChessBrowser\obj\Debug\ChessBrowser.exe
+C:\Users\steen\Desktop\UofU-2016-2020\Spring 2019\CS 5530\Homework\HW5\ChessBrowser\ChessBrowser\obj\Debug\ChessBrowser.pdb
+C:\Users\steen\Desktop\UofU-2016-2020\Spring 2019\CS 5530\Homework\HW5\ChessBrowser\ChessBrowser\bin\Debug\ChessTools.dll
+C:\Users\steen\Desktop\UofU-2016-2020\Spring 2019\CS 5530\Homework\HW5\ChessBrowser\ChessBrowser\bin\Debug\ChessTools.pdb
